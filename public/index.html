@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Pokédex Élite | Wiki Pokémon HD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/CSS/styles.css">
+</head>
+<body>
+
+<header>
+  <img src="/multi/logo.png" alt="Pokemon Wiki Elite" class="logo-principal">
+  <nav>
+    <ul>
+      <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+      <li><a href="registro.html"><i class="fas fa-user-plus"></i> Regístrate</a></li>
+      <li><a href="#multimedia"><i class="fas fa-video"></i> Multimedia</a></li>
+      <li><a href="base.html"><i class="fas fa-shop"></i> Tienda</a></li>
+      <li><button id="botonModo" onclick="cambiarModo()"><i class="fas fa-moon"></i> Modo oscuro</button></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="contenedor" id="inicio">
+  <h2><i class="fas fa-map-marked-alt"></i> Regiones legendarias</h2>
+  <section class="galeria-2x2">
+    <div class="tarjeta">
+      <a href="kanto.html" style="text-decoration: none;">
+        <img src="/multi/kanto2.jpg" alt="KANTO" class="imagen" onerror="this.src='https://placehold.co/600x400?text=Kanto+Region'">
+        <p class="pie-foto">🔥 KANTO 🔥</p>
+      </a>
+    </div>
+    <div class="tarjeta">
+      <a href="jhoto.html" style="text-decoration: none;">
+        <img src="/multi/jhoto.jpg" alt="JOHTO" class="imagen" onerror="this.src='https://placehold.co/600x400?text=Johto+Region'">
+        <p class="pie-foto">🌿 JOHTO 🌿</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="sugerencias">
+    <h3><i class="fas fa-plus-circle"></i> ¡Sugiere nuevas regiones!</h3>
+    <div class="flex-input">
+      <input type="text" id="tarea" placeholder="Ej: Hoenn, Sinnoh, Paldea...">
+      <button onclick="agregar()" class="boton-glow"><i class="fas fa-gem"></i> Agregar región</button>
+    </div>
+    <ul id="lista"></ul>
+  </section>
+
+  <section id="multimedia" class="multimedia-section">
+    <h2><i class="fas fa-headphones-alt"></i> Contenido Multimedia</h2>
+    <div class="multimedia-flex">
+      <div class="multimedia-logo">
+        <img src="/multi/logo.png" alt="Pokemon" class="logo-multimedia">
+      </div>
+      <div class="multimedia-video">
+        <h3>🎬 ¿Qué es Pokémon?</h3>
+        <video controls poster="https://placehold.co/600x400?text=Pokemon+Trailer">
+          <source src="/multi/pokemon.mp4" type="video/mp4">
+          Tu navegador no soporta video.
+        </video>
+        <h3>🎵 Intro Anime (Latino)</h3>
+        <audio controls>
+          <source src="/multi/Pokémon_Opening.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+  </section>
+
+  <section class="quiz-section">
+    <h2><i class="fas fa-dragon"></i> Quiz Pokémon Élite</h2>
+    <form id="quiz">
+      <p><strong>⚡ ¿Qué tipo te atrae más? (puedes elegir varios)</strong></p>
+      <label><input type="checkbox" name="tipo" value="Fuego"> 🔥 Fuego</label>
+      <label><input type="checkbox" name="tipo" value="Agua"> 💧 Agua</label>
+      <label><input type="checkbox" name="tipo" value="Planta"> 🌿 Planta</label>
+      
+      <p><strong>🏆 Tu región favorita:</strong></p>
+      <label><input type="radio" name="region" value="Kanto"> 🏔️ Kanto</label>
+      <label><input type="radio" name="region" value="Johto"> 🎋 Johto</label>
+      
+      <div class="contador-quiz">
+        <span>✨ Respuestas marcadas: </span>
+        <span id="contador">0</span>
+      </div>
+      <div>
+        <button type="button" id="guardarQuiz" class="boton-glow"><i class="fas fa-save"></i> Guardar respuestas</button>
+        <p id="mensajeGuardado"></p>
+      </div>
+    </form>
+  </section>
+
+  <section class="carrusel-section">
+    <h2><i class="fas fa-images"></i> Galería Legendaria</h2>
+    <div class="carrusel-container">
+      <button id="anterior" class="carrusel-btn">⬅️</button>
+      <div class="imagenes-carrusel">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="activa" alt="Pikachu">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png" alt="Charizard">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png" alt="Mewtwo">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/382.png" alt="Kyogre">
+      </div>
+      <button id="siguiente" class="carrusel-btn">➡️</button>
+    </div>
+    <p class="carrusel-footer"><i class="fas fa-star"></i> Desliza para ver Pokémon emblemáticos</p>
+  </section>
+
+  <div class="like-flotante">
+    <span>❤️ Me gusta la Wiki: </span>
+    <span id="contadorLikes">0</span>
+    <button id="btnLike">👍 Like</button>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2026 Pokémon Wiki Élite | Hecho con 🔥 para verdaderos maestros | Todos los derechos reservados</p>
+</footer>
+<button id="btnArriba" class="btn-arriba" title="Subir">⬆️</button>
+
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Kanto | Pokémon Wiki Élite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/CSS/styles.css">
+    <style>
+        /* Estilos específicos para la página de Kanto */
+        .region-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .region-header h2 {
+            font-size: 3rem;
+            margin-top: 1rem;
+            border-left: none;
+            background: linear-gradient(135deg, #e3350c, #ffcb05);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .info-general p {
+            line-height: 1.7;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+        .mapa-container {
+            text-align: center;
+        }
+        .mapa-container img {
+            max-width: 100%;
+            border-radius: 32px;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.3);
+            border: 3px solid #ffcb05;
+        }
+        /* Galería de iniciales */
+        .iniciales-gallery {
+            text-align: center;
+        }
+        .iniciales-principal {
+            margin-bottom: 25px;
+        }
+        .iniciales-principal img {
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.4);
+            border: 4px solid #ffcb05;
+            transition: transform 0.3s;
+            max-width: 300px;
+            width: 100%;
+        }
+        .iniciales-miniaturas {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .iniciales-miniaturas img {
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 3px solid transparent;
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+        }
+        .iniciales-miniaturas img:hover {
+            transform: scale(1.1);
+            border-color: #e3350c;
+            box-shadow: 0 8px 20px rgba(227,53,12,0.4);
+        }
+        .pokedex-wrapper {
+            overflow-x: auto;
+        }
+        .pokedex {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            background: linear-gradient(135deg, #1a3a5f, #0f2a44);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        .pokedex thead {
+            background: #e3350c;
+        }
+        .pokedex th {
+            padding: 15px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        .pokedex td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            color: #f0f0f0;
+        }
+        .pokedex tbody tr:hover {
+            background: rgba(255,203,5,0.2);
+        }
+        .nombre {
+            font-weight: bold;
+            color: #ffcb05;
+        }
+        .tipo {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+            margin: 2px;
+        }
+        .planta { background-color: #4CAF50; }
+        .fuego { background-color: #e67e22; }
+        .agua { background-color: #3498db; }
+        .veneno { background-color: #8e44ad; }
+        .volador { background-color: #5dade2; }
+        .like-region {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .like-region button {
+            background: linear-gradient(95deg, #e3350c, #fc7e2c);
+            padding: 12px 28px;
+            font-size: 1.1rem;
+        }
+        .enlace-pokedex {
+            display: inline-block;
+            margin-top: 20px;
+            background: #ffcb05;
+            color: #1e2a3e;
+            padding: 12px 25px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .enlace-pokedex:hover {
+            background: #e3350c;
+            color: white;
+            transform: scale(1.05);
+        }
+        body.oscuro .pokedex {
+            background: linear-gradient(135deg, #0f172f, #0a0c1a);
+        }
+        body.oscuro .pokedex td {
+            color: #e2e8f0;
+        }
+        body.oscuro .iniciales-miniaturas img {
+            background: rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="/multi/logo.png" alt="Pokemon Wiki Elite" class="logo-principal" onerror="this.src='https://placehold.co/260x80?text=Pokemon+Wiki'">
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="jhoto.html"><i class="fas fa-leaf"></i> Johto</a></li>
+            <li><a href="registro.html"><i class="fas fa-user-plus"></i> Regístrate</a></li>
+            <li><button id="botonModo" onclick="cambiarModo()"><i class="fas fa-moon"></i> Modo oscuro</button></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="contenedor">
+    <div class="region-header">
+        <h2><i class="fas fa-fire"></i> Región de Kanto <i class="fas fa-bolt"></i></h2>
+    </div>
+
+    <!-- Información general -->
+    <section class="info-general">
+        <h1><i class="fas fa-info-circle"></i> Información general</h1>
+        <p>Kanto (カントー Kantō en japonés) es una región del mundo Pokémon situada al este de Johto y al sur de Sinnoh. Su paisaje está inspirado en la zona de Japón del mismo nombre, la región de Kantō.
+        Kanto pertenece al mismo continente que Johto. El lazo que une ambas regiones viene dado por las Cataratas Tohjo, si bien también está la ruta 27, que sirve de cruce con la Cueva Plateada integrada en Johto pero separada de los demás lugares. Una de las formas más rápidas de viajar de una región a otra es tomando el Magnetotrén, un tren de alta velocidad que realiza el trayecto Ciudad Azafrán-Ciudad Trigal. Además del barco que hace el trayecto Ciudad Olivo-Ciudad Carmín aunque solo salga de Ciudad Olivo los lunes y viernes pero de Ciudad Carmín los miércoles y domingos.</p>
+        <p><small><i class="fas fa-book-open"></i> Contenido adaptado de wikidex.net - Se prohíbe su uso a PlagioDex.</small></p>
+    </section>
+
+    <!-- Mapa de la región -->
+    <section>
+        <h2><i class="fas fa-map"></i> Mapa de Kanto</h2>
+        <div class="mapa-container">
+            <img src="/multi/Mapa_Kanto.png" alt="Mapa de Kanto" onerror="this.src='https://placehold.co/800x500?text=Mapa+de+Kanto'">
+        </div>
+    </section>
+
+    <!-- Pokémon iniciales con galería interactiva -->
+    <section>
+        <h2><i class="fas fa-paw"></i> Pokémon iniciales</h2>
+        <div class="iniciales-gallery">
+            <div class="iniciales-principal">
+                <img id="principal" src="Charmander.png" alt="Pokémon inicial" onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png'">
+            </div>
+            <div class="iniciales-miniaturas">
+                <img src="/multi/Charmander.png" alt="Charmander" onclick="cambiar(this)" onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png'">
+                <img src="/multi/Squirtle.png" alt="Squirtle" onclick="cambiar(this)" onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png'">
+                <img src="/multi/Bulbasaur.png" alt="Bulbasaur" onclick="cambiar(this)" onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png'">
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 15px;"><i class="fas fa-star"></i> Charmander 🔥 | Squirtle 💧 | Bulbasaur 🌿</p>
+    </section>
+
+    <!-- Tabla de Pokémon -->
+    <section>
+        <h2><i class="fas fa-table"></i> Pokémon de Kanto</h2>
+        <div class="pokedex-wrapper">
+            <table class="pokedex">
+                <thead>
+                    <tr>
+                        <th>#NAC</th>
+                        <th>#KAN</th>
+                        <th>Icono</th>
+                        <th>Nombre</th>
+                        <th>Tipos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0001</td><td>001</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png" width="50"></td><td class="nombre">Bulbasaur</td><td><span class="tipo planta">🌿 PLANTA</span> <span class="tipo veneno">☠️ VENENO</span></td></tr>
+                    <tr><td>0002</td><td>002</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png" width="50"></td><td class="nombre">Ivysaur</td><td><span class="tipo planta">🌿 PLANTA</span> <span class="tipo veneno">☠️ VENENO</span></td></tr>
+                    <tr><td>0003</td><td>003</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png" width="50"></td><td class="nombre">Venusaur</td><td><span class="tipo planta">🌿 PLANTA</span> <span class="tipo veneno">☠️ VENENO</span></td></tr>
+                    <tr><td>0004</td><td>004</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png" width="50"></td><td class="nombre">Charmander</td><td><span class="tipo fuego">🔥 FUEGO</span></td></tr>
+                    <tr><td>0005</td><td>005</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png" width="50"></td><td class="nombre">Charmeleon</td><td><span class="tipo fuego">🔥 FUEGO</span></td></tr>
+                    <tr><td>0006</td><td>006</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png" width="50"></td><td class="nombre">Charizard</td><td><span class="tipo fuego">🔥 FUEGO</span> <span class="tipo volador">🕊️ VOLADOR</span></td></tr>
+                    <tr><td>0007</td><td>007</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png" width="50"></td><td class="nombre">Squirtle</td><td><span class="tipo agua">💧 AGUA</span></td></tr>
+                    <tr><td>0008</td><td>008</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png" width="50"></td><td class="nombre">Wartortle</td><td><span class="tipo agua">💧 AGUA</span></td></tr>
+                    <tr><td>0009</td><td>009</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png" width="50"></td><td class="nombre">Blastoise</td><td><span class="tipo agua">💧 AGUA</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align: center; margin-top: 25px;">
+            <a href="https://www.wikidex.net/wiki/Lista_de_Pok%C3%A9mon_seg%C3%BAn_la_Pok%C3%A9dex_de_Kanto" target="_blank" class="enlace-pokedex">
+                <i class="fas fa-external-link-alt"></i> Ver Pokédex completa
+            </a>
+        </div>
+    </section>
+
+    <!-- Like y opinión -->
+    <section>
+        <h2><i class="fas fa-heart"></i> ¿Te gustó esta guía?</h2>
+        <p>¡Déjanos tu like y comparte tu opinión! ⭐</p>
+        <div class="like-region">
+            <button id="btnLike" class="boton-glow"><i class="fas fa-thumbs-up"></i> Me gusta</button>
+            <span id="contadorLikes" style="font-size: 1.8rem; font-weight: bold; background: #e3350c; padding: 5px 20px; border-radius: 60px; color: white;">0</span>
+        </div>
+        <p style="margin-top: 15px;"><i class="fas fa-comment"></i> ¡Explora Kanto y conviértete en un maestro Pokémon!</p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Pokémon Wiki Élite | Todos los derechos reservados | Hecho con 🔥 para maestros Pokémon</p>
+</footer>
+
+<button id="btnArriba" class="btn-arriba" title="Subir">⬆️</button>
+
+<script src="script.js"></script>
+<script>
+    // Función para cambiar la imagen principal (ya existe en script.js, pero la reforzamos)
+    function cambiar(img) {
+        const principal = document.getElementById("principal");
+        if (principal && img && img.src) {
+            principal.src = img.src;
+            // Efecto de transición
+            principal.style.transform = "scale(0.95)";
+            setTimeout(() => { principal.style.transform = "scale(1)"; }, 150);
+        }
+    }
+
+    // Inicialización específica para la página de Kanto
+    document.addEventListener("DOMContentLoaded", () => {
+        // Cargar modo oscuro guardado
+        if (localStorage.getItem("modoOscuro") === "true") {
+            document.body.classList.add("oscuro");
+            const botonModo = document.getElementById("botonModo");
+            if (botonModo) botonModo.innerHTML = '<i class="fas fa-sun"></i> Modo claro';
+        }
+
+        // Sistema de likes específico para Kanto
+        const btnLike = document.getElementById("btnLike");
+        const contadorLikesSpan = document.getElementById("contadorLikes");
+        let likes = localStorage.getItem("likesKanto");
+        likes = likes === null ? 0 : parseInt(likes);
+        if (contadorLikesSpan) contadorLikesSpan.textContent = likes;
+        
+        if (btnLike) {
+            btnLike.addEventListener("click", () => {
+                likes++;
+                contadorLikesSpan.textContent = likes;
+                localStorage.setItem("likesKanto", likes);
+                btnLike.style.transform = "scale(1.1)";
+                setTimeout(() => { btnLike.style.transform = "scale(1)"; }, 200);
+            });
+        }
+
+        // Botón subir arriba
+        const btnUp = document.getElementById("btnArriba");
+        if (btnUp) {
+            btnUp.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        }
+
+        // Prevenir error si no existe la función cambiar en el scope global
+        if (typeof window.cambiar === 'undefined') {
+            window.cambiar = cambiar;
+        }
+    });
+</script>
+</body>
+</html>

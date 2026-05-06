@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Registro | Pokémon Wiki Élite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/CSS/styles.css">
+    <style>
+        /* Estilos específicos para el formulario de registro */
+        .registro-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .registro-header h2 {
+            font-size: 2.5rem;
+            margin-top: 1rem;
+            border-left: none;
+            background: linear-gradient(135deg, #e3350c, #ffcb05);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .formulario-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .form-card {
+            background: rgba(255, 248, 235, 0.95);
+            border-radius: 48px;
+            padding: 40px;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25);
+            border: 2px solid #ffcd94;
+            transition: all 0.3s;
+        }
+        body.oscuro .form-card {
+            background: rgba(18, 25, 55, 0.9);
+            border-color: #facc15;
+        }
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #e3350c;
+        }
+        body.oscuro .form-group label {
+            color: #ffcb05;
+        }
+        .form-group i {
+            position: absolute;
+            left: 15px;
+            top: 42px;
+            color: #e3350c;
+            font-size: 1.1rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            border: 2px solid #ffcd94;
+            border-radius: 60px;
+            font-size: 1rem;
+            transition: all 0.2s;
+            background: white;
+            font-family: 'Inter', sans-serif;
+        }
+        body.oscuro .form-group input {
+            background: #0f172f;
+            border-color: #facc15;
+            color: white;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #e3350c;
+            box-shadow: 0 0 0 3px rgba(227,53,12,0.2);
+            transform: translateY(-2px);
+        }
+        .btn-registro {
+            width: 100%;
+            background: linear-gradient(95deg, #e3350c, #fc7e2c);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: white;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 14px rgba(0,0,0,0.2);
+            margin-top: 10px;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-registro:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(227,53,12,0.5);
+        }
+        .mensaje-form {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 40px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+        .mensaje-exito {
+            background: #4CAF50;
+            color: white;
+        }
+        .mensaje-error {
+            background: #e3350c;
+            color: white;
+        }
+        .info-adicional {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px dashed #ffcd94;
+        }
+        body.oscuro .info-adicional {
+            border-top-color: #facc15;
+        }
+        .info-adicional p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        body.oscuro .info-adicional p {
+            color: #aaa;
+        }
+        .pokeball-deco {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+        .requisitos {
+            font-size: 0.8rem;
+            margin-top: 5px;
+            margin-left: 45px;
+            color: #888;
+        }
+        body.oscuro .requisitos {
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="/multi/logo.png" alt="Pokemon Wiki Elite" class="logo-principal" onerror="this.src='https://placehold.co/260x80?text=Pokemon+Wiki'">
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="registro.html"><i class="fas fa-user-plus"></i> Regístrate</a></li>
+            <li><a href="kanto.html"><i class="fas fa-fire"></i> Kanto</a></li>
+            <li><a href="jhoto.html"><i class="fas fa-leaf"></i> Johto</a></li>
+            <li><button id="botonModo" onclick="cambiarModo()"><i class="fas fa-moon"></i> Modo oscuro</button></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="contenedor">
+    <div class="registro-header">
+        <div class="pokeball-deco">
+            <i class="fas fa-pokeball"></i> <i class="fas fa-star"></i> <i class="fas fa-pokeball"></i>
+        </div>
+        <h2><i class="fas fa-user-astronaut"></i> Únete a la aventura</h2>
+    </div>
+
+    <section class="formulario-container">
+        <div class="form-card">
+            <h3 style="text-align: center; margin-bottom: 25px; color: #e3350c;">
+                <i class="fas fa-graduation-cap"></i> Conviértete en entrenador
+            </h3>
+            <form id="miFormulario">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Nombre de entrenador</label>
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="nombre" placeholder="Ash Ketchum" autocomplete="off">
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Correo electrónico</label>
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="correo" placeholder="entrenador@pokemon.com" autocomplete="off">
+                </div>
+                
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Contraseña</label>
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" placeholder="••••••••">
+                    <div class="requisitos">Mínimo 6 caracteres</div>
+                </div>
+                
+                <button type="submit" class="btn-registro">
+                    <i class="fas fa-paper-plane"></i> Registrar
+                </button>
+            </form>
+            <div id="mensaje" class="mensaje-form"></div>
+            <div class="info-adicional">
+                <p><i class="fas fa-shield-alt"></i> Tus datos están seguros con nosotros</p>
+                <p><i class="fas fa-gamepad"></i> ¡Recibirás novedades de tu región favorita!</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Pokémon Wiki Élite | Todos los derechos reservados | Hecho con 🔥 para maestros Pokémon</p>
+</footer>
+
+<button id="btnArriba" class="btn-arriba" title="Subir">⬆️</button>
+
+<script src="/js/script.js"></script>
+<script>
+    // Inicialización específica para la página de registro
+    document.addEventListener("DOMContentLoaded", () => {
+        // Cargar modo oscuro guardado
+        if (localStorage.getItem("modoOscuro") === "true") {
+            document.body.classList.add("oscuro");
+            const botonModo = document.getElementById("botonModo");
+            if (botonModo) botonModo.innerHTML = '<i class="fas fa-sun"></i> Modo claro';
+        }
+
+        // Botón subir arriba
+        const btnUp = document.getElementById("btnArriba");
+        if (btnUp) {
+            btnUp.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        }
+
+        // Manejo del formulario de registro
+        const formulario = document.getElementById("miFormulario");
+        const mensajeDiv = document.getElementById("mensaje");
+        
+        if (formulario) {
+            formulario.addEventListener("submit", function(e) {
+                e.preventDefault();
+                
+                let nombre = document.getElementById("nombre").value.trim();
+                let correo = document.getElementById("correo").value.trim();
+                let password = document.getElementById("password").value;
+                
+                // Limpiar mensaje anterior
+                mensajeDiv.style.display = "block";
+                
+                // Validaciones
+                if (nombre === "" || correo === "" || password === "") {
+                    mensajeDiv.textContent = "❌ ¡Todos los campos son obligatorios!";
+                    mensajeDiv.className = "mensaje-form mensaje-error";
+                } 
+                else if (nombre.length < 3) {
+                    mensajeDiv.textContent = "❌ El nombre debe tener al menos 3 caracteres";
+                    mensajeDiv.className = "mensaje-form mensaje-error";
+                }
+                else if (!correo.includes("@") || !correo.includes(".")) {
+                    mensajeDiv.textContent = "❌ Correo electrónico inválido";
+                    mensajeDiv.className = "mensaje-form mensaje-error";
+                }
+                else if (password.length < 6) {
+                    mensajeDiv.textContent = "❌ La contraseña debe tener al menos 6 caracteres";
+                    mensajeDiv.className = "mensaje-form mensaje-error";
+                }
+                else {
+                    // Guardar usuario en localStorage (simulando registro)
+                    const usuario = {
+                        nombre: nombre,
+                        correo: correo,
+                        fechaRegistro: new Date().toLocaleString()
+                    };
+                    
+                    // Guardar en localStorage
+                    localStorage.setItem("usuarioRegistrado", JSON.stringify(usuario));
+                    
+                    mensajeDiv.textContent = "✅ ¡Registro exitoso! ¡Bienvenido, " + nombre + "!";
+                    mensajeDiv.className = "mensaje-form mensaje-exito";
+                    
+                    // Limpiar formulario
+                    document.getElementById("nombre").value = "";
+                    document.getElementById("correo").value = "";
+                    document.getElementById("password").value = "";
+                    
+                    // Opcional: mostrar confetti o efecto
+                    setTimeout(() => {
+                        mensajeDiv.style.opacity = "0";
+                        setTimeout(() => {
+                            mensajeDiv.style.display = "none";
+                            mensajeDiv.style.opacity = "1";
+                        }, 2000);
+                    }, 3000);
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

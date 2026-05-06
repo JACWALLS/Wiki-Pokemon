@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD con Fetch - HTML/CSS/JS Separados</title>
+    <!-- CSS separado -->
+    <link rel="stylesheet" href="CSS/estilos.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>📦 Gestión de Productos</h1>
+        
+        <!-- Formulario para Crear y Actualizar -->
+        <div class="formulario">
+            <h2 id="formTitulo">Nuevo Producto</h2>
+            <form id="productoForm">
+                <input type="hidden" id="productoId">
+                
+                <div class="campo">
+                    <label>Nombre:</label>
+                    <input type="text" id="nombre" required>
+                </div>
+                
+                <div class="campo">
+                    <label>Precio:</label>
+                    <input type="number" id="precio" step="0.01" required>
+                </div>
+                
+                <div class="campo">
+                    <label>Descripción:</label>
+                    <textarea id="descripcion" rows="3"></textarea>
+                </div>
+                
+                <div class="acciones-form">
+                    <button type="submit" id="btnGuardar" class="btn-guardar">💾 Guardar</button>
+                    <button type="button" id="btnCancelar" class="btn-cancelar" style="display: none;">❌ Cancelar</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Tabla para Listar, Editar y Eliminar -->
+        <div class="tabla-container">
+            <h2>📋 Lista de Productos</h2>
+            <table id="tablaProductos">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTabla"></tbody>
+            </table>
+        </div>
+        
+        <div id="mensaje" class="mensaje"></div>
+    </div>
+    
+    <!-- JavaScript separado (SIEMPRE al final del body) -->
+    <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,667 @@
+/* ============================================
+   ESTILOS POKÉMON WIKI ÉLITE PARA CRUD
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(145deg, #f9f3e6 0%, #ffe6d5 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #1e2a3e;
+}
+
+/* ========== MODO OSCURO ========== */
+body.oscuro {
+    background: #0a0c1a;
+    color: #f0f3fa;
+}
+
+body.oscuro .container {
+    background: rgba(18, 25, 55, 0.95);
+    border: 1px solid #ffcb05;
+}
+
+body.oscuro .formulario {
+    background: rgba(18, 25, 55, 0.8);
+    border-color: #facc15;
+}
+
+body.oscuro label {
+    color: #ffcb05;
+}
+
+body.oscuro input,
+body.oscuro textarea {
+    background: #0f172f;
+    border-color: #facc15;
+    color: white;
+}
+
+body.oscuro input:focus,
+body.oscuro textarea:focus {
+    border-color: #e3350c;
+    box-shadow: 0 0 8px rgba(227, 53, 12, 0.4);
+}
+
+body.oscuro table th {
+    background: #e3350c;
+}
+
+body.oscuro table td {
+    border-bottom-color: #2a2f4b;
+    color: #e2e8f0;
+}
+
+body.oscuro tr:hover {
+    background: rgba(255, 203, 5, 0.1);
+}
+
+body.oscuro .mensaje-exito {
+    background: #1a3a2f;
+    color: #4caf50;
+    border-color: #4caf50;
+}
+
+body.oscuro .mensaje-error {
+    background: #3a1f2a;
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+/* ========== HEADER ========== */
+header {
+    background: linear-gradient(135deg, #e3350c, #c42d0a);
+    padding: 1rem 2rem;
+    border-bottom: 5px solid #ffcb05;
+    box-shadow: 0 12px 25px -10px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    margin-bottom: 30px;
+    border-radius: 20px 20px 0 0;
+}
+
+.logo-principal {
+    display: block;
+    margin: 0 auto;
+    max-width: 260px;
+    filter: drop-shadow(2px 4px 12px rgba(0,0,0,0.3));
+    transition: transform 0.2s;
+}
+
+.logo-principal:hover {
+    transform: scale(1.02);
+}
+
+nav {
+    background: #ffde6e;
+    padding: 12px 20px;
+    border-radius: 60px;
+    margin-top: 16px;
+    box-shadow: 0 5px 0 #b97f10;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+nav a, nav button {
+    font-weight: 800;
+    font-size: 1rem;
+    background: transparent;
+    border: none;
+    color: #2c1e0f;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 40px;
+    transition: all 0.2s;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+}
+
+nav a:hover, nav button:hover {
+    background: #e3350c;
+    color: white;
+    transform: scale(1.05);
+}
+
+nav a.active {
+    background: #e3350c;
+    color: white;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: rgba(255, 248, 235, 0.95);
+    border-radius: 48px;
+    padding: 30px;
+    box-shadow: 0 25px 45px -12px rgba(0,0,0,0.25);
+    border: 2px solid #ffcd94;
+}
+
+/* Títulos */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    background: linear-gradient(120deg, #e3350c, #f3b43c);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+h1 i {
+    margin: 0 10px;
+}
+
+h2 {
+    color: #e3350c;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    border-left: 6px solid #ffcb05;
+    padding-left: 20px;
+}
+
+body.oscuro h2 {
+    color: #ffcb05;
+}
+
+/* ========== FORMULARIO ========== */
+.formulario {
+    background: rgba(255, 248, 235, 0.7);
+    padding: 30px;
+    border-radius: 32px;
+    margin-bottom: 40px;
+    border: 2px solid #ffcd94;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.campo {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #e3350c;
+    font-size: 0.95rem;
+}
+
+label i {
+    margin-right: 8px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #ffcd94;
+    border-radius: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: all 0.2s;
+    background: white;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #e3350c;
+    box-shadow: 0 0 0 3px rgba(227, 53, 12, 0.2);
+    transform: translateY(-2px);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Campos específicos */
+.campo-id input {
+    background: #f0f0f0;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+body.oscuro .campo-id input {
+    background: #1a1f3a;
+}
+
+/* Botones del formulario */
+.acciones-form {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.btn-guardar {
+    background: linear-gradient(95deg, #e3350c, #fc7e2c);
+    color: white;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn-guardar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(227, 53, 12, 0.4);
+}
+
+.btn-actualizar {
+    background: linear-gradient(95deg, #f39c12, #e67e22);
+    color: white;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-actualizar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(243, 156, 18, 0.4);
+}
+
+.btn-cancelar {
+    background: #6c757d;
+    color: white;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-cancelar:hover {
+    background: #5a6268;
+    transform: scale(1.05);
+}
+
+/* Botones de tabla */
+.btn-editar {
+    background: #17a2b8;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin: 0 4px;
+}
+
+.btn-editar:hover {
+    background: #138496;
+    transform: scale(1.05);
+}
+
+.btn-eliminar {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin: 0 4px;
+}
+
+.btn-eliminar:hover {
+    background: #c82333;
+    transform: scale(1.05);
+}
+
+/* ========== TABLA ========== */
+.tabla-container {
+    overflow-x: auto;
+    border-radius: 24px;
+    background: white;
+    padding: 5px;
+}
+
+body.oscuro .tabla-container {
+    background: transparent;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+thead {
+    background: linear-gradient(95deg, #e3350c, #c42d0a);
+}
+
+th {
+    color: white;
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+th i {
+    margin-right: 8px;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ffcd94;
+    vertical-align: middle;
+}
+
+tbody tr:hover {
+    background: rgba(227, 53, 12, 0.08);
+    cursor: pointer;
+}
+
+body.oscuro tbody tr:hover {
+    background: rgba(255, 203, 5, 0.1);
+}
+
+/* Estilo para celdas vacías */
+td:empty::before {
+    content: "—";
+    color: #999;
+}
+
+/* Columna de acciones */
+td:last-child {
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* Id de producto */
+td:first-child {
+    font-family: monospace;
+    font-weight: bold;
+    color: #e3350c;
+}
+
+body.oscuro td:first-child {
+    color: #ffcb05;
+}
+
+/* Precio */
+td:nth-child(3) {
+    font-weight: bold;
+    color: #2ecc71;
+}
+
+body.oscuro td:nth-child(3) {
+    color: #2ecc71;
+}
+
+td:nth-child(3)::before {
+    content: "₽ ";
+    font-size: 0.85rem;
+}
+
+/* ========== MENSAJES FLOTANTES ========== */
+.mensaje {
+    position: fixed;
+    top: 100px;
+    right: 30px;
+    padding: 15px 25px;
+    border-radius: 60px;
+    display: none;
+    z-index: 1100;
+    animation: slideIn 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.mensaje-exito {
+    background: linear-gradient(95deg, #28a745, #20c997);
+    color: white;
+    border-left: 5px solid #ffcb05;
+}
+
+.mensaje-error {
+    background: linear-gradient(95deg, #dc3545, #c82333);
+    color: white;
+    border-left: 5px solid #ffcb05;
+}
+
+.mensaje i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+/* ========== BOTÓN FLOTANTE SUBIR ========== */
+.btn-arriba {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #e3350c;
+    color: white;
+    border: none;
+    width: 52px;
+    height: 52px;
+    border-radius: 60px;
+    font-size: 26px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    transition: all 0.2s;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-arriba:hover {
+    background: #facc15;
+    color: #1e1e2a;
+    transform: translateY(-5px);
+}
+
+/* ========== CARGANDO ========== */
+.cargando {
+    text-align: center;
+    padding: 50px;
+    font-size: 1.2rem;
+    color: #e3350c;
+}
+
+.cargando i {
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ========== POKEBOLA DECORACIÓN ========== */
+.pokeball-deco {
+    text-align: center;
+    font-size: 2rem;
+    opacity: 0.5;
+    margin-bottom: 20px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    .formulario {
+        padding: 20px;
+    }
+
+    .acciones-form {
+        flex-direction: column;
+    }
+
+    .acciones-form button {
+        width: 100%;
+    }
+
+    th, td {
+        padding: 8px;
+        font-size: 0.75rem;
+    }
+
+    .btn-editar, .btn-eliminar {
+        padding: 5px 10px;
+        font-size: 0.7rem;
+    }
+
+    nav ul {
+        gap: 0.5rem;
+    }
+
+    nav a, nav button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .mensaje {
+        top: 80px;
+        right: 15px;
+        left: 15px;
+        text-align: center;
+    }
+
+    .logo-principal {
+        max-width: 180px;
+    }
+}
+
+/* ========== SCROLLBAR PERSONALIZADA ========== */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #ffe6d5;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e3350c;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #c42d0a;
+}
+
+body.oscuro::-webkit-scrollbar-track {
+    background: #0a0c1a;
+}
+
+body.oscuro::-webkit-scrollbar-thumb {
+    background: #ffcb05;
+}
+
+body.oscuro::-webkit-scrollbar-thumb:hover {
+    background: #facc15;
+}
+
+/* ========== SELECTORES DE POKEMON ========== */
+select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #ffcd94;
+    border-radius: 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    background: white;
+    cursor: pointer;
+}
+
+body.oscuro select {
+    background: #0f172f;
+    border-color: #facc15;
+    color: white;
+}
+
+/* ========== NOTAS Y FOOTER ========== */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+    color: #888;
+    font-size: 0.8rem;
+}
+
+body.oscuro footer {
+    color: #aaa;
+}
+
+footer i {
+    color: #e3350c;
+    margin: 0 4px;
+}
+
+body.oscuro footer i {
+    color: #ffcb05;
+}

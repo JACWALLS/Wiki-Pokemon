@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Johto | Pokémon Wiki Élite</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/CSS/styles.css">
+    <style>
+        /* Estilos extra específicos para la página de región */
+        .region-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .region-header h2 {
+            font-size: 3rem;
+            margin-top: 1rem;
+            border-left: none;
+            background: linear-gradient(135deg, #e3350c, #ffcb05);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .info-general p {
+            line-height: 1.7;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+        .mapa-container {
+            text-align: center;
+        }
+        .mapa-container img {
+            max-width: 100%;
+            border-radius: 32px;
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.3);
+            border: 3px solid #ffcb05;
+        }
+        .iniciales-carrusel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .pokedex-wrapper {
+            overflow-x: auto;
+        }
+        .pokedex {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+            background: linear-gradient(135deg, #1a3a5f, #0f2a44);
+            border-radius: 24px;
+            overflow: hidden;
+        }
+        .pokedex thead {
+            background: #e3350c;
+        }
+        .pokedex th {
+            padding: 15px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        .pokedex td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            color: #f0f0f0;
+        }
+        .pokedex tbody tr:hover {
+            background: rgba(255,203,5,0.2);
+        }
+        .nombre {
+            font-weight: bold;
+            color: #ffcb05;
+        }
+        .tipo {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: white;
+        }
+        .planta { background-color: #4CAF50; }
+        .fuego { background-color: #e67e22; }
+        .agua { background-color: #3498db; }
+        .like-region {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .like-region button {
+            background: linear-gradient(95deg, #e3350c, #fc7e2c);
+            padding: 12px 28px;
+            font-size: 1.1rem;
+        }
+        .enlace-pokedex {
+            display: inline-block;
+            margin-top: 20px;
+            background: #ffcb05;
+            color: #1e2a3e;
+            padding: 12px 25px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .enlace-pokedex:hover {
+            background: #e3350c;
+            color: white;
+            transform: scale(1.05);
+        }
+        body.oscuro .pokedex {
+            background: linear-gradient(135deg, #0f172f, #0a0c1a);
+        }
+        body.oscuro .pokedex td {
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="/multi/logo.png" alt="Pokemon Wiki Elite" class="logo-principal" onerror="this.src='https://placehold.co/260x80?text=Pokemon+Wiki'">
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="kanto.html"><i class="fas fa-fire"></i> Kanto</a></li>
+            <li><a href="registro.html"><i class="fas fa-user-plus"></i> Regístrate</a></li>
+            <li><button id="botonModo" onclick="cambiarModo()"><i class="fas fa-moon"></i> Modo oscuro</button></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="contenedor">
+    <div class="region-header">
+        <h2><i class="fas fa-tree"></i> Región de Johto <i class="fas fa-water"></i></h2>
+    </div>
+
+    <!-- Información general -->
+    <section class="info-general">
+        <h1><i class="fas fa-info-circle"></i> Información general</h1>
+        <p>Johto (ジョウト Jōto en japonés) es una región del mundo Pokémon situada al oeste de Kanto. Su paisaje está inspirado en la zona de Japón llamada región de Kinki y el oeste de la región de Tōkai.
+        Johto y Kanto forman una sola gran masa de tierra, un continente, en cuyo centro, y dividiendo ambas regiones, se encuentra la Meseta Añil, la Liga Pokémon, junto con el Monte Plateado y las Cataratas Tohjo. Comparte la misma Liga Pokémon con Kanto, solo que con otros miembros del Alto Mando y un nuevo campeón.
+        El lazo que une ambas regiones viene dado por las Cataratas Tohjo, si bien también está la ruta 27, que sirve de cruce con la Cueva Plateada, integrada en Johto pero separada de los demás lugares. En lo que a medios de transporte respecta, Johto y Kanto están unidos por el Magnetotrén mediante tierra y por el S.S. Aqua por vía marina.</p>
+        <p><small><i class="fas fa-book-open"></i> Contenido adaptado de wikidex.net - Se prohíbe su uso a PlagioDex.</small></p>
+    </section>
+
+    <!-- Mapa de la región -->
+    <section>
+        <h2><i class="fas fa-map"></i> Mapa de Johto</h2>
+        <div class="mapa-container">
+            <img src="/multi/jhoto_map.jpg" alt="Mapa de Johto" onerror="this.src='https://placehold.co/800x500?text=Mapa+de+Johto'">
+        </div>
+    </section>
+
+    <!-- Pokémon iniciales con carrusel -->
+    <section>
+        <h2><i class="fas fa-paw"></i> Pokémon iniciales</h2>
+        <div class="carrusel-container">
+            <button id="anterior" class="carrusel-btn">⬅️</button>
+            <div class="imagenes-carrusel" style="width: 300px; height: 300px;">
+                <img src="Cyndaquil.png" class="activa" alt="Cyndaquil" onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/155.png'">
+                <img src="Chikorita.png" alt="Chikorita" onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/152.png'">
+                <img src="Totodile.png" alt="Totodile" onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/158.png'">
+            </div>
+            <button id="siguiente" class="carrusel-btn">➡️</button>
+        </div>
+        <p style="text-align: center; margin-top: 15px;"><i class="fas fa-star"></i> Cyndaquil 🔥 | Chikorita 🌿 | Totodile 💧</p>
+    </section>
+
+    <!-- Tabla de Pokémon -->
+    <section>
+        <h2><i class="fas fa-table"></i> Pokémon de Johto</h2>
+        <div class="pokedex-wrapper">
+            <table class="pokedex">
+                <thead>
+                    <tr>
+                        <th>#NAC</th>
+                        <th>#JOH</th>
+                        <th>Icono</th>
+                        <th>Nombre</th>
+                        <th>Tipos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0152</td><td>001</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png" width="50"></td><td class="nombre">Chikorita</td><td><span class="tipo planta">🌿 PLANTA</span></td></tr>
+                    <tr><td>0153</td><td>002</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/153.png" width="50"></td><td class="nombre">Bayleef</td><td><span class="tipo planta">🌿 PLANTA</span></td></tr>
+                    <tr><td>0154</td><td>003</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/154.png" width="50"></td><td class="nombre">Meganium</td><td><span class="tipo planta">🌿 PLANTA</span></td></tr>
+                    <tr><td>0155</td><td>004</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/155.png" width="50"></td><td class="nombre">Cyndaquil</td><td><span class="tipo fuego">🔥 FUEGO</span></td></tr>
+                    <tr><td>0156</td><td>005</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/156.png" width="50"></td><td class="nombre">Quilava</td><td><span class="tipo fuego">🔥 FUEGO</span></td></tr>
+                    <tr><td>0157</td><td>006</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/157.png" width="50"></td><td class="nombre">Typhlosion</td><td><span class="tipo fuego">🔥 FUEGO</span></td></tr>
+                    <tr><td>0158</td><td>007</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/158.png" width="50"></td><td class="nombre">Totodile</td><td><span class="tipo agua">💧 AGUA</span></td></tr>
+                    <tr><td>0159</td><td>008</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/159.png" width="50"></td><td class="nombre">Croconaw</td><td><span class="tipo agua">💧 AGUA</span></td></tr>
+                    <tr><td>0160</td><td>009</td><td><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/160.png" width="50"></td><td class="nombre">Feraligatr</td><td><span class="tipo agua">💧 AGUA</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="text-align: center; margin-top: 25px;">
+            <a href="https://www.wikidex.net/wiki/Lista_de_Pok%C3%A9mon_seg%C3%BAn_la_Pok%C3%A9dex_de_Johto" target="_blank" class="enlace-pokedex">
+                <i class="fas fa-external-link-alt"></i> Ver Pokédex completa
+            </a>
+        </div>
+    </section>
+
+    <!-- Like y opinión -->
+    <section>
+        <h2><i class="fas fa-heart"></i> ¿Te gustó esta guía?</h2>
+        <p>¡Déjanos tu like y comparte tu opinión! ⭐</p>
+        <div class="like-region">
+            <button id="btnLike" class="boton-glow"><i class="fas fa-thumbs-up"></i> Me gusta</button>
+            <span id="contadorLikes" style="font-size: 1.8rem; font-weight: bold; background: #e3350c; padding: 5px 20px; border-radius: 60px; color: white;">0</span>
+        </div>
+        <p style="margin-top: 15px;"><i class="fas fa-comment"></i> ¡Explora Johto y atrapa a todos!</p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Pokémon Wiki Élite | Todos los derechos reservados | Hecho con 🔥 para maestros Pokémon</p>
+</footer>
+
+<button id="btnArriba" class="btn-arriba" title="Subir">⬆️</button>
+
+<script src="/public/js/script.js"></script>
+<script>
+    // Inicialización específica para la página de Johto
+    document.addEventListener("DOMContentLoaded", () => {
+        // Cargar modo oscuro guardado
+        if (localStorage.getItem("modoOscuro") === "true") {
+            document.body.classList.add("oscuro");
+            const botonModo = document.getElementById("botonModo");
+            if (botonModo) botonModo.innerHTML = '<i class="fas fa-sun"></i> Modo claro';
+        }
+
+        // Carrusel de iniciales (Johto)
+        const imagenesIniciales = document.querySelectorAll(".imagenes-carrusel img");
+        const btnSiguiente = document.getElementById("siguiente");
+        const btnAnterior = document.getElementById("anterior");
+        let indiceIniciales = 0;
+        
+        if (imagenesIniciales.length > 0) {
+            function actualizarCarrusel() {
+                imagenesIniciales.forEach((img, i) => {
+                    img.classList.toggle("activa", i === indiceIniciales);
+                });
+            }
+            actualizarCarrusel();
+            
+            if (btnSiguiente) {
+                btnSiguiente.addEventListener("click", () => {
+                    indiceIniciales = (indiceIniciales + 1) % imagenesIniciales.length;
+                    actualizarCarrusel();
+                });
+            }
+            if (btnAnterior) {
+                btnAnterior.addEventListener("click", () => {
+                    indiceIniciales = (indiceIniciales - 1 + imagenesIniciales.length) % imagenesIniciales.length;
+                    actualizarCarrusel();
+                });
+            }
+        }
+
+        // Sistema de likes específico para esta página (puede ser independiente o compartido)
+        const btnLike = document.getElementById("btnLike");
+        const contadorLikesSpan = document.getElementById("contadorLikes");
+        let likes = localStorage.getItem("likesJohto");
+        likes = likes === null ? 0 : parseInt(likes);
+        if (contadorLikesSpan) contadorLikesSpan.textContent = likes;
+        
+        if (btnLike) {
+            btnLike.addEventListener("click", () => {
+                likes++;
+                contadorLikesSpan.textContent = likes;
+                localStorage.setItem("likesJohto", likes);
+                btnLike.style.transform = "scale(1.1)";
+                setTimeout(() => { btnLike.style.transform = "scale(1)"; }, 200);
+            });
+        }
+
+        // Botón subir arriba
+        const btnUp = document.getElementById("btnArriba");
+        if (btnUp) {
+            btnUp.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        }
+    });
+</script>
+</body>
+</html>
