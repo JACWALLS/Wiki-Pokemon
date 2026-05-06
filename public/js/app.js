@@ -5,7 +5,7 @@
 
 // ========== CONFIGURACIÓN ==========
 //const API_URL = 'http://localhost:3000/api/productos';
-const API_URL = 'https://wiki-pokemon.onrender.com';
+const API_URL = 'https://wiki-pokemon.onrender.com/api/productos';
 
 // Variables globales
 let productos = [];
